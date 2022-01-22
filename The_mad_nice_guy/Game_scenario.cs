@@ -54,6 +54,16 @@ namespace The_mad_nice_guy
     }
     public class NPC
     {
+        public XY start_xy { get; set; }
+        public string left_standing { get; set; }
+        public string left_walking_a { get; set; }
+        public string left_walking_b { get; set; }
+        public NPC(XY Start_xy, string Left_standing, string Left_walking_a, string Left_walking_b) {
+            start_xy = Start_xy;
+            left_standing = Left_standing;
+            left_walking_a = Left_walking_a;
+            left_walking_b = Left_walking_b;
 
+        }
     }
 }
