@@ -8,7 +8,37 @@ namespace The_mad_nice_guy
 {
     public class Game_scenario
     {
-        public List<String> start_text = new List<String>();
+        public List<String> start_text { get; set; }
+        public List<String> before_start_action_text { get; set; }
+        public List<String> after_start_action_text { get; set; }
+        public List<String> end_text { get; set; }
+        public int move_x { get; set; }
+        public int move_y { get; set; }
+
+        public int start_x { get; set; }
+        public int start_y { get; set; }
+        public int target_NPC { get; set; }
+        public List<NPC> NPC_list { get; set; }
+        public XY actual_action_XY { get; set; }
+        public List<String> actual_action_images { get; set; }
+
+        public Game_scenario(List<String> Start_text, List<String> Before_start_action_text, List<String> After_start_action_text, List<String> End_text,
+            int Move_x, int Move_y, int Start_x, int Start_y, int Target_NPC, List<NPC> The_NPC_list, XY Actual_action_XY, List<String> Actual_action_images)
+        {
+            start_text = Start_text;
+            before_start_action_text = Before_start_action_text;
+            after_start_action_text = After_start_action_text;
+            end_text = End_text;
+            move_x = Move_x;
+            move_y = Move_y;
+            start_x = Start_x;
+            start_y = Start_y;
+            target_NPC = Target_NPC;
+            NPC_list = The_NPC_list;
+            actual_action_XY = Actual_action_XY;
+            actual_action_images = Actual_action_images;
+
+        }
 
     }
    public class XY
@@ -22,7 +52,7 @@ namespace The_mad_nice_guy
             y = Y;
         }
     }
-    public class NPC_list
+    public class NPC
     {
 
     }
