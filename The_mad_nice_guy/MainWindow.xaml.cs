@@ -114,20 +114,19 @@ namespace The_mad_nice_guy
             {
                 if(Sammy_image.Margin.Left < 970)
                 {
-                    await Task.Delay(30);
-                    Sammy_image.Margin = new Thickness(Sammy_image.Margin.Left + 2, 250, 0, 0);
+                    Sammy_image.Margin = new Thickness(Sammy_image.Margin.Left + 5, 250, 0, 0);
                     Sammy_good_walking_a_bit.RotateFlip(RotateFlipType.RotateNoneFlipX);
                     Sammy_image.Source = Imaging.CreateBitmapSourceFromHBitmap(Sammy_good_walking_a_bit.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
                     Sammy_image.UpdateLayout();
                     main_game_canvas.UpdateLayout();
-                    await Task.Delay(50);
+                    await Task.Delay(100);
 
-                    Sammy_image.Margin = new Thickness(Sammy_image.Margin.Left + 3, 250, 0, 0);
+                    Sammy_image.Margin = new Thickness(Sammy_image.Margin.Left + 5, 250, 0, 0);
                     Sammy_good_walking_b_bit.RotateFlip(RotateFlipType.RotateNoneFlipX);
                     Sammy_image.Source = Imaging.CreateBitmapSourceFromHBitmap(Sammy_good_walking_b_bit.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
                     Sammy_image.UpdateLayout();
                     main_game_canvas.UpdateLayout();
-                    await Task.Delay(50);
+                    await Task.Delay(100);
                 }
                 Sammy_good_standing_bit.RotateFlip(RotateFlipType.RotateNoneFlipX);
                 Sammy_image.Source = Imaging.CreateBitmapSourceFromHBitmap(Sammy_good_standing_bit.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
@@ -138,18 +137,17 @@ namespace The_mad_nice_guy
             {
                 if (Sammy_image.Margin.Left > 10)
                 {
-                    await Task.Delay(30);
-                    Sammy_image.Margin = new Thickness(Sammy_image.Margin.Left - 2, 250, 0, 0);
+                    Sammy_image.Margin = new Thickness(Sammy_image.Margin.Left - 4, 250, 0, 0);
                     Sammy_image.Source = Imaging.CreateBitmapSourceFromHBitmap(Sammy_good_walking_a_bit.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
                     Sammy_image.UpdateLayout();
                     main_game_canvas.UpdateLayout();
-                    await Task.Delay(50);
+                    await Task.Delay(100);
 
-                    Sammy_image.Margin = new Thickness(Sammy_image.Margin.Left - 3, 250, 0, 0);
+                    Sammy_image.Margin = new Thickness(Sammy_image.Margin.Left - 5, 250, 0, 0);
                     Sammy_image.Source = Imaging.CreateBitmapSourceFromHBitmap(Sammy_good_walking_b_bit.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
                     Sammy_image.UpdateLayout();
                     main_game_canvas.UpdateLayout();
-                    await Task.Delay(50);
+                    await Task.Delay(100);
 
 
                 }
