@@ -54,7 +54,7 @@ namespace The_mad_nice_guy
     }
     public class NPC
     {
-        public XY start_xy { get; set; }
+        public XY start_xy { get; set; } //Must be the multiply of 5!!
         public string left_standing { get; set; }
         public string left_walking_a { get; set; }
         public string left_walking_b { get; set; }
