@@ -22,8 +22,10 @@ namespace The_mad_nice_guy
         public XY actual_action_XY { get; set; }
         public List<String> actual_action_images { get; set; }
 
+        public int boarder_left, boarder_right, boarder_top, boarder_bottom;
+
         public Game_scenario(List<String> Start_text, List<String> Before_start_action_text, List<String> After_start_action_text, List<String> End_text,
-            int Move_x, int Move_y, int Start_x, int Start_y, int Target_NPC, List<NPC> The_NPC_list, XY Actual_action_XY, List<String> Actual_action_images)
+            int Move_x, int Move_y, int Start_x, int Start_y, int Target_NPC, List<NPC> The_NPC_list, XY Actual_action_XY, List<String> Actual_action_images, int Boarder_left, int Boarder_right, int Boarder_top, int Boarder_bottom)
         {
             start_text = Start_text;
             before_start_action_text = Before_start_action_text;
@@ -37,6 +39,14 @@ namespace The_mad_nice_guy
             NPC_list = The_NPC_list;
             actual_action_XY = Actual_action_XY;
             actual_action_images = Actual_action_images;
+            boarder_left = Boarder_left;
+            boarder_right = Boarder_left;
+            boarder_top = Boarder_top;
+            boarder_bottom = Boarder_bottom;
+
+        }
+        public Game_scenario()
+        {
 
         }
 
