@@ -114,7 +114,7 @@ namespace The_mad_nice_guy
             Sammy_image.VerticalAlignment = VerticalAlignment.Top;
             Sammy_image.Margin = new Thickness(60, 250, 0, 0);
             Sammy_image.Name = "Sammy_image_control";
-            Sammy_image.Source = Imaging.CreateBitmapSourceFromHBitmap(Sammy_good_standing_bit.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            Sammy_image.Source = shorter.bm_source(Sammy_good_standing_bit);
             main_game_canvas.Children.Add(Sammy_image);
 
         }
@@ -137,20 +137,20 @@ namespace The_mad_nice_guy
                 {
                     Sammy_image.Margin = new Thickness(Sammy_image.Margin.Left + 5, Sammy_image.Margin.Top, 0, 0);
                     Sammy_good_walking_a_bit.RotateFlip(RotateFlipType.RotateNoneFlipX);
-                    Sammy_image.Source = Imaging.CreateBitmapSourceFromHBitmap(Sammy_good_walking_a_bit.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+                    Sammy_image.Source = shorter.bm_source(Sammy_good_walking_a_bit);
                     Sammy_image.UpdateLayout();
                     main_game_canvas.UpdateLayout();
                     await Task.Delay(150);
 
                     Sammy_image.Margin = new Thickness(Sammy_image.Margin.Left + 5, Sammy_image.Margin.Top, 0, 0);
                     Sammy_good_walking_b_bit.RotateFlip(RotateFlipType.RotateNoneFlipX);
-                    Sammy_image.Source = Imaging.CreateBitmapSourceFromHBitmap(Sammy_good_walking_b_bit.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+                    Sammy_image.Source = shorter.bm_source(Sammy_good_walking_b_bit);
                     Sammy_image.UpdateLayout();
                     main_game_canvas.UpdateLayout();
                     await Task.Delay(150);
                 }
                 Sammy_good_standing_bit.RotateFlip(RotateFlipType.RotateNoneFlipX);
-                Sammy_image.Source = Imaging.CreateBitmapSourceFromHBitmap(Sammy_good_standing_bit.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+                Sammy_image.Source = shorter.bm_source(Sammy_good_standing_bit);
                 Sammy_image.UpdateLayout();
                 main_game_canvas.UpdateLayout();
             }
@@ -159,20 +159,20 @@ namespace The_mad_nice_guy
                 if (Sammy_image.Margin.Left > game_scenario_list[process].boarder_left)
                 {
                     Sammy_image.Margin = new Thickness(Sammy_image.Margin.Left - 5, Sammy_image.Margin.Top, 0, 0);
-                    Sammy_image.Source = Imaging.CreateBitmapSourceFromHBitmap(Sammy_good_walking_a_bit.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+                    Sammy_image.Source = shorter.bm_source(Sammy_good_walking_a_bit);
                     Sammy_image.UpdateLayout();
                     main_game_canvas.UpdateLayout();
                     await Task.Delay(150);
 
                     Sammy_image.Margin = new Thickness(Sammy_image.Margin.Left - 5, Sammy_image.Margin.Top, 0, 0);
-                    Sammy_image.Source = Imaging.CreateBitmapSourceFromHBitmap(Sammy_good_walking_b_bit.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+                    Sammy_image.Source = shorter.bm_source(Sammy_good_walking_b_bit);
                     Sammy_image.UpdateLayout();
                     main_game_canvas.UpdateLayout();
                     await Task.Delay(150);
 
 
                 }
-                Sammy_image.Source = Imaging.CreateBitmapSourceFromHBitmap(Sammy_good_standing_bit.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+                Sammy_image.Source = shorter.bm_source(Sammy_good_standing_bit);
                 Sammy_image.UpdateLayout();
                 main_game_canvas.UpdateLayout();
             }else if(dir == direction.up)
@@ -180,20 +180,20 @@ namespace The_mad_nice_guy
                 if (Sammy_image.Margin.Top > game_scenario_list[process].boarder_top)
                 {
                     Sammy_image.Margin = new Thickness(Sammy_image.Margin.Left, Sammy_image.Margin.Top - 5, 0, 0);
-                    Sammy_image.Source = Imaging.CreateBitmapSourceFromHBitmap(Sammy_good_walking_a_bit.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+                    Sammy_image.Source = shorter.bm_source(Sammy_good_walking_a_bit);
                     Sammy_image.UpdateLayout();
                     main_game_canvas.UpdateLayout();
                     await Task.Delay(200);
 
                     Sammy_image.Margin = new Thickness(Sammy_image.Margin.Left, Sammy_image.Margin.Top - 5, 0, 0);
-                    Sammy_image.Source = Imaging.CreateBitmapSourceFromHBitmap(Sammy_good_walking_b_bit.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+                    Sammy_image.Source = shorter.bm_source(Sammy_good_walking_b_bit);
                     Sammy_image.UpdateLayout();
                     main_game_canvas.UpdateLayout();
                     await Task.Delay(200);
 
 
                 }
-                Sammy_image.Source = Imaging.CreateBitmapSourceFromHBitmap(Sammy_good_standing_bit.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+                Sammy_image.Source = shorter.bm_source(Sammy_good_standing_bit);
                 Sammy_image.UpdateLayout();
                 main_game_canvas.UpdateLayout();
 
@@ -203,20 +203,20 @@ namespace The_mad_nice_guy
                 if (Sammy_image.Margin.Top < game_scenario_list[process].boarder_bottom)
                 {
                     Sammy_image.Margin = new Thickness(Sammy_image.Margin.Left, Sammy_image.Margin.Top + 5, 0, 0);
-                    Sammy_image.Source = Imaging.CreateBitmapSourceFromHBitmap(Sammy_good_walking_a_bit.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+                    Sammy_image.Source = shorter.bm_source(Sammy_good_walking_a_bit);
                     Sammy_image.UpdateLayout();
                     main_game_canvas.UpdateLayout();
                     await Task.Delay(150);
 
                     Sammy_image.Margin = new Thickness(Sammy_image.Margin.Left, Sammy_image.Margin.Top + 5, 0, 0);
-                    Sammy_image.Source = Imaging.CreateBitmapSourceFromHBitmap(Sammy_good_walking_b_bit.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+                    Sammy_image.Source = shorter.bm_source(Sammy_good_walking_b_bit);
                     Sammy_image.UpdateLayout();
                     main_game_canvas.UpdateLayout();
                     await Task.Delay(150);
 
 
                 }
-                Sammy_image.Source = Imaging.CreateBitmapSourceFromHBitmap(Sammy_good_standing_bit.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+                Sammy_image.Source = shorter.bm_source(Sammy_good_standing_bit);
                 Sammy_image.UpdateLayout();
                 main_game_canvas.UpdateLayout();
             }
@@ -242,13 +242,17 @@ namespace The_mad_nice_guy
             for(int i = 0; i < game_scenario_list[process].actual_action_images.Count; i++)
             { 
                 Bitmap temp_bitmap = new Bitmap("resources/"+ game_scenario_list[process].actual_action_images[i]);
-                main_game_image.Source = Imaging.CreateBitmapSourceFromHBitmap(temp_bitmap.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+                main_game_image.Source = shorter.bm_source(temp_bitmap);
                 await Task.Delay(800);
             }
         }
     }
-    public class Main_game_handler
+    public class shorter
     {
+        public static BitmapSource bm_source(Bitmap bm)
+        {
+            return Imaging.CreateBitmapSourceFromHBitmap(bm.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+        }
 
     }
 }
