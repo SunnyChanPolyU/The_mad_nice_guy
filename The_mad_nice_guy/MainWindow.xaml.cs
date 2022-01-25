@@ -270,6 +270,7 @@ namespace The_mad_nice_guy
             entered = false;
             while (!entered) { 
             }
+            process++;
             build_scenario();
         }
         async void do_game_bad_action()
@@ -285,6 +286,7 @@ namespace The_mad_nice_guy
             while (!entered)
             {
             }
+            process++;
             build_scenario();
         }
     }
