@@ -25,6 +25,7 @@ namespace The_mad_nice_guy
     {
         public List<Game_scenario> game_scenario_list = new List<Game_scenario>();
         public static bool in_game = false;
+        public static bool entered = false;
         public MainWindow()
         {
             InitializeComponent();
@@ -77,6 +78,9 @@ namespace The_mad_nice_guy
                         go_to_direction(direction.down);
                     }
                     break;
+                case "Return":
+                    entered = true;
+                    break;
             }
         }
 
@@ -101,6 +105,7 @@ namespace The_mad_nice_guy
             process = 0;
             build_env();
             in_game = true;
+            build_scenario();
         }
         public void build_env()
         {
@@ -117,6 +122,10 @@ namespace The_mad_nice_guy
             Sammy_image.Source = shorter.bm_source(Sammy_good_standing_bit);
             main_game_canvas.Children.Add(Sammy_image);
 
+        }
+        public void build_scenario()
+        {
+            progress_in_process = 0;
         }
         enum direction
         {
@@ -228,23 +237,55 @@ namespace The_mad_nice_guy
             {
                 progress_in_process += 1;
                 //before_start_action_text
+                main_game_text_output.Visibility = Visibility.Visible;
+                for (int i = 0; i < game_scenario_list[process].before_start_action_text.Count; i++)
+                {
+                    main_game_text_output.Content = game_scenario_list[process].before_start_action_text[i];
+                    await Task.Delay(2000);
+                }
                 //puzzle
             }
             going = false;
         }
 
-        void do_game_good_action()
+        async void do_game_good_action()
         {
-
+            //after start action text
+            main_game_text_output.Visibility = Visibility.Visible;
+            for (int i = 0; i < game_scenario_list[process].after_start_action_text.Count; i++)
+            {
+                main_game_text_output.Content = game_scenario_list[process].after_start_action_text[i];
+                await Task.Delay(2000);
+            }
+            main_game_text_output.Visibility = Visibility.Collapsed;
+            //move x
+            //move y
+            main_game_text_output.Visibility = Visibility.Visible;
+            for (int i = 0; i < game_scenario_list[process].end_text.Count; i++)
+            {
+                await Task.Delay(2000);
+                main_game_text_output.Content = game_scenario_list[process].end_text[i];
+                
+            }
+            entered = false;
+            while (!entered) { 
+            }
+            build_scenario();
         }
         async void do_game_bad_action()
         {
+            main_game_text_output.Visibility = Visibility.Collapsed;
             for(int i = 0; i < game_scenario_list[process].actual_action_images.Count; i++)
             { 
                 Bitmap temp_bitmap = new Bitmap("resources/"+ game_scenario_list[process].actual_action_images[i]);
                 main_game_image.Source = shorter.bm_source(temp_bitmap);
                 await Task.Delay(800);
             }
+            entered = false;
+            while (!entered)
+            {
+            }
+            build_scenario();
         }
     }
     public class shorter

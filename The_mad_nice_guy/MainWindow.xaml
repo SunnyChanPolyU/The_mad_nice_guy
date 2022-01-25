@@ -13,6 +13,7 @@
         </Canvas>
         <Canvas x:Name="main_game_canvas" HorizontalAlignment="Left" Height="547" VerticalAlignment="Top" Width="1018">
             <Image x:Name="main_game_image" Height="547" Width="1018"/>
+            <Label x:Name="main_game_text_output" Content="" Canvas.Left="245" Canvas.Top="497" Height="50" Width="602" FontFamily="Times New Roman" FontSize="16" Background="#FF6E6E6E" Foreground="#FFFFFCFC"/>
         </Canvas>
 
     </Grid>
