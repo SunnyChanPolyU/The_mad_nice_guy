@@ -26,6 +26,8 @@ namespace The_mad_nice_guy
         public List<Game_scenario> game_scenario_list = new List<Game_scenario>();
         public static bool in_game = false;
         public static bool entered = false;
+        List<int> the_byte = new List<int> { 0, 0, 0, 0, 0, 0, 0, 0 };
+        List<int> request_byte = new List<int> { 0, 0, 0, 0, 0, 0, 0, 0 };
         public MainWindow()
         {
             InitializeComponent();
@@ -154,6 +156,7 @@ namespace The_mad_nice_guy
             up,
             down,
         }
+
         async void go_to_direction(direction dir) {
             going = true;
             Bitmap Sammy_good_standing_bit = new Bitmap("resources/" + Sammy_good_standing);
@@ -264,6 +267,19 @@ namespace The_mad_nice_guy
                     await Task.Delay(2000);
                 }
                 //puzzle
+                main_game_switches_panel.Visibility = Visibility.Visible;
+                switch1.Content = the_byte[0].ToString();
+                switch2.Content = the_byte[1].ToString();
+                switch3.Content = the_byte[2].ToString();
+                switch4.Content = the_byte[3].ToString();
+                switch5.Content = the_byte[4].ToString();
+                switch6.Content = the_byte[5].ToString();
+                switch7.Content = the_byte[6].ToString();
+                switch8.Content = the_byte[7].ToString();
+                for(int i = 0; i < 8; i++)
+                {
+                    request_byte[i] = new Random(new System.DateTime().Millisecond).Next(2);
+                }
             }
             going = false;
         }
@@ -308,6 +324,106 @@ namespace The_mad_nice_guy
             }
             process++;
             build_scenario();
+        }
+
+        private void switch1_Click(object sender, RoutedEventArgs e)
+        {
+            if (the_byte[0] == 0)
+            {
+                the_byte[0] = 1;
+            }
+            else { the_byte[0] = 0; }
+            switch1.Content = the_byte[0].ToString();
+        }
+
+        private void switch2_Click(object sender, RoutedEventArgs e)
+        {
+            if (the_byte[1] == 0)
+            {
+                the_byte[1] = 1;
+            }
+            else { the_byte[1] = 0; }
+            switch2.Content = the_byte[1].ToString();
+        }
+
+        private void switch3_Click(object sender, RoutedEventArgs e)
+        {
+            if (the_byte[2] == 0)
+            {
+                the_byte[2] = 1;
+            }
+            else { the_byte[2] = 0; }
+            switch3.Content = the_byte[2].ToString();
+        }
+
+        private void switch4_Click(object sender, RoutedEventArgs e)
+        {
+            if (the_byte[3] == 0)
+            {
+                the_byte[3] = 1;
+            }
+            else { the_byte[3] = 0; }
+            switch4.Content = the_byte[3].ToString();
+        }
+
+        private void switch5_Click(object sender, RoutedEventArgs e)
+        {
+            if (the_byte[4] == 0)
+            {
+                the_byte[4] = 1;
+            }
+            else { the_byte[4] = 0; }
+            switch5.Content = the_byte[4].ToString();
+        }
+
+        private void switch6_Click(object sender, RoutedEventArgs e)
+        {
+            if (the_byte[5] == 0)
+            {
+                the_byte[5] = 1;
+            }
+            else { the_byte[5] = 0; }
+            switch6.Content = the_byte[5].ToString();
+        }
+
+        private void switch7_Click(object sender, RoutedEventArgs e)
+        {
+            if (the_byte[6] == 0)
+            {
+                the_byte[6] = 1;
+            }
+            else { the_byte[6] = 0; }
+            switch7.Content = the_byte[6].ToString();
+        }
+
+        private void switch8_Click(object sender, RoutedEventArgs e)
+        {
+            if (the_byte[7] == 0)
+            {
+                the_byte[7] = 1;
+            }
+            else { the_byte[7] = 0; }
+            switch8.Content = the_byte[7].ToString();
+
+        }
+
+        private void execute_button_Click(object sender, RoutedEventArgs e)
+        {
+            int true_counter = 0;
+            for(int i = 0; i < 8; i++)
+            {
+                if(the_byte[i] == request_byte[i])
+                {
+                    true_counter++;
+                }
+            }
+            if(true_counter== 8)
+            {
+                do_game_good_action();
+            }else if(true_counter == 0)
+            {
+                do_game_bad_action();
+            }
         }
     }
     public class shorter

@@ -14,6 +14,18 @@
         <Canvas x:Name="main_game_canvas" HorizontalAlignment="Left" Height="547" VerticalAlignment="Top" Width="1018">
             <Image x:Name="main_game_image" Height="547" Width="1018"/>
             <Label x:Name="main_game_text_output" Content="" Canvas.Left="245" Canvas.Top="497" Height="50" Width="602" FontFamily="Times New Roman" FontSize="16" Background="#FF6E6E6E" Foreground="#FFFFFCFC"/>
+            <Canvas x:Name="main_game_switches_panel" Height="60" Canvas.Left="292" Width="716" Canvas.Top="82">
+                <Button x:Name="switch1" Content="Button" Canvas.Left="10" Canvas.Top="10" Width="75" Click="switch1_Click"/>
+                <Button x:Name="switch2" Content="Button" Canvas.Left="90" Canvas.Top="10" Width="75" Click="switch2_Click"/>
+                <Button x:Name="switch3" Content="Button" Canvas.Left="170" Canvas.Top="10" Width="75" Click="switch3_Click"/>
+                <Button x:Name="switch4" Content="Button" Canvas.Left="250" Canvas.Top="10" Width="75" Click="switch4_Click"/>
+                <Button x:Name="switch5" Content="Button" Canvas.Left="325" Canvas.Top="10" Width="75" Click="switch5_Click"/>
+                <Button x:Name="switch6" Content="Button" Canvas.Left="405" Canvas.Top="10" Width="75" Click="switch6_Click"/>
+                <Button x:Name="switch7" Content="Button" Canvas.Left="485" Canvas.Top="10" Width="75" Click="switch7_Click"/>
+                <Button x:Name="switch8" Content="Button" Canvas.Left="565" Canvas.Top="10" Width="75" Click="switch8_Click"/>
+                <Label x:Name="request_label" Content="Label" Canvas.Left="68" Canvas.Top="35" Width="332"/>
+                <Button x:Name="execute_button" Content="Execute" Canvas.Left="645" Canvas.Top="10" Width="74" RenderTransformOrigin="-0.311,2.395" Click="execute_button_Click"/>
+            </Canvas>
         </Canvas>
 
     </Grid>
