@@ -123,9 +123,29 @@ namespace The_mad_nice_guy
             main_game_canvas.Children.Add(Sammy_image);
 
         }
+        List<Image> NPC_images_list = new List<Image>();
         public void build_scenario()
         {
+            NPC_images_list.Clear();
             progress_in_process = 0;
+            Bitmap BG_bit = new Bitmap("resources/scenario" +process.ToString() +".png");
+            main_game_image.Source = shorter.bm_source(BG_bit);
+            for(int i = 0; i < game_scenario_list[process].NPC_list.Count; i++)
+            {
+                Bitmap temp_bm = new Bitmap("resources/"+ game_scenario_list[process].NPC_list[i].left_standing);
+                Image temp_image = new Image();
+                temp_image.Width = 45;
+                temp_image.Height = 45;
+                temp_image.HorizontalAlignment = HorizontalAlignment.Left;
+                temp_image.VerticalAlignment = VerticalAlignment.Top;
+                temp_image.Margin = new Thickness(game_scenario_list[process].NPC_list[i].start_xy.x, game_scenario_list[process].NPC_list[i].start_xy.y, 0, 0);
+                temp_image.Name = "Sammy_image_control";
+                temp_image.Source = shorter.bm_source(temp_bm);
+                NPC_images_list.Add(temp_image);
+                main_game_canvas.Children.Add(temp_image);
+
+            }
+
         }
         enum direction
         {
