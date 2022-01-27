@@ -90,10 +90,41 @@ namespace The_mad_nice_guy
         private void init_scenario_list()
         {
             game_scenario_list.Add(new Game_scenario());
-            game_scenario_list[0].boarder_bottom = 500;
-            game_scenario_list[0].boarder_left = 30;
-            game_scenario_list[0].boarder_right = 600;
-            game_scenario_list[0].boarder_top = 60;
+            //Blind person left his wallet on the other side of the road
+            game_scenario_list[0].start_text = new List<String> { "You are Sammy, and you knew you must help people around you",
+                "Because you are a nice guy that want to help others and see the smile of others",
+                "There seems to be a blind person in distress, let's help him!!"};
+
+            game_scenario_list[0].before_start_action_text = new List<String> { "[The blind person] Arr... Where is my wallet?...",
+                "It seems that he left his wallet on the other side of the road, collect your brain on the top right corner to help him!"};
+
+            game_scenario_list[0].after_start_action_text = new List<String> {"[Sammy] Sir, you left your wallet on the other side of the road!",
+            "[Sammy] Let's me go help you fetch it back!", "[The blind person] Thank you, kind stranger."};
+
+            game_scenario_list[0].end_text = new List<String> { "This will only be one of many people you are going to help",
+            "Press Enter to continue helping others."};
+
+            //An old lady needs to deliver meal to her son
+            game_scenario_list[1].start_text = new List<String> { "Hmm, that old woman may need help, approach her to ask how you can help her!" };
+
+            game_scenario_list[1].before_start_action_text = new List<String> {"[Sammy] Hello, is there anything I can help you?",
+            "[The old woman] Oh, well, actually I am just about to deliver the basket of meal to my son across the river, maybe you can help me?",
+            "[A demonic voice] Hey, do you want to see the truth? Enter the opposite of what you supposed to do to reveal the truth!"};
+
+            game_scenario_list[1].after_start_action_text = new List<String> { "[Sammy] Of course, I can do that! Let's me help you!"};
+
+            game_scenario_list[1].end_text = new List<String> { "Great job! You had bring the nice meal to her son!",
+                "You may now pres Enter to process."};
+
+            //Water the garden
+            game_scenario_list[2].start_text = new List<String> { "Well, even the flowers may need someone to help them!",
+                "Grab the watering can to give them some water!",
+                "Anyway, do not listen to the other voice, this is definitely the reality!"};
+
+            game_scenario_list[2].start_text = new List<String> { "Come on! You need stop and face the truth! You need to get some help!" };
+            game_scenario_list[2].after_start_action_text = new List<String> { "" };
+            game_scenario_list[2].end_text = new List<String> { "Great! You even saved the flowers!", "Now press Enter to face consequence!" };
+
         }
 
         int process;
