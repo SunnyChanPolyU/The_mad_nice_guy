@@ -30,13 +30,21 @@ namespace The_mad_nice_guy
         List<int> request_byte = new List<int> { 0, 0, 0, 0, 0, 0, 0, 0 };
         public MainWindow()
         {
-            InitializeComponent();
-            main_game_canvas.Visibility = Visibility.Collapsed;
-            main_menu.Visibility = Visibility.Visible;
-            Lang_handler.default_texts();
-            main_menu_start_game_button.Content = Lang_handler.texts_list.Find(x => x.text_name == "main_menu_start_text").the_text;
-            main_menu_quit_game_button.Content = Lang_handler.texts_list.Find(x => x.text_name == "main_menu_quit_text").the_text;
-            init_scenario_list();
+            try
+            {
+                InitializeComponent();
+                main_game_canvas.Visibility = Visibility.Collapsed;
+                main_menu.Visibility = Visibility.Visible;
+                Lang_handler.default_texts();
+                main_menu_start_game_button.Content = Lang_handler.texts_list.Find(x => x.text_name == "main_menu_start_text").the_text;
+                main_menu_quit_game_button.Content = Lang_handler.texts_list.Find(x => x.text_name == "main_menu_quit_text").the_text;
+                init_scenario_list();
+            }
+
+           catch (Exception e)
+            {
+
+            }
         }
 
         private void main_menu_quit_game_button_Click(object sender, RoutedEventArgs e)
@@ -91,12 +99,19 @@ namespace The_mad_nice_guy
         {
             game_scenario_list.Add(new Game_scenario());
             //Blind person left his wallet on the other side of the road
+            game_scenario_list[0].NPC_list = new List<NPC> { new NPC(new XY(500, 150), "blind_idle.png", "", "") };
+            game_scenario_list[0].boarder_bottom = 200;
+            game_scenario_list[0].boarder_top = 100;
+            game_scenario_list[0].boarder_left = 0;
+            game_scenario_list[0].boarder_right = 1000;
+            game_scenario_list[0].start_x = 300;
+            game_scenario_list[0].start_y = 150;
             game_scenario_list[0].start_text = new List<String> { "You are Sammy, and you knew you must help people around you",
                 "Because you are a nice guy that want to help others and see the smile of others",
                 "There seems to be a blind person in distress, let's help him!!"};
 
             game_scenario_list[0].before_start_action_text = new List<String> { "[The blind person] Arr... Where is my wallet?...",
-                "It seems that he left his wallet on the other side of the road, collect your brain on the top right corner to help him!"};
+                "It seems that he left his wallet on the other side of the road, \nset your brain on the top right corner to help him!"};
 
             game_scenario_list[0].after_start_action_text = new List<String> {"[Sammy] Sir, you left your wallet on the other side of the road!",
             "[Sammy] Let's me go help you fetch it back!", "[The blind person] Thank you, kind stranger."};
@@ -157,11 +172,13 @@ namespace The_mad_nice_guy
 
         }
         List<Image> NPC_images_list = new List<Image>();
-        public void build_scenario()
+        public async void build_scenario()
         {
+            main_game_switches_panel.Visibility = Visibility.Collapsed;
             NPC_images_list.Clear();
             progress_in_process = 0;
-            Bitmap BG_bit = new Bitmap("resources/scenario" +process.ToString() +".png");
+            Sammy_image.Margin = new Thickness(game_scenario_list[process].start_x, game_scenario_list[process].start_y, 0, 0);
+            Bitmap BG_bit = new Bitmap("resources/scenario" + process.ToString() +".png");
             main_game_image.Source = shorter.bm_source(BG_bit);
             for(int i = 0; i < game_scenario_list[process].NPC_list.Count; i++)
             {
@@ -178,7 +195,13 @@ namespace The_mad_nice_guy
                 main_game_canvas.Children.Add(temp_image);
 
             }
-
+            main_game_text_output.Visibility = Visibility.Visible;
+            for (int i = 0; i < game_scenario_list[process].start_text.Count; i++)
+            {
+                main_game_text_output.Content = game_scenario_list[process].start_text[i];
+                await Task.Delay(2000);
+            }
+            main_game_text_output.Visibility = Visibility.Collapsed;
         }
         enum direction
         {
@@ -307,11 +330,17 @@ namespace The_mad_nice_guy
                 switch6.Content = the_byte[5].ToString();
                 switch7.Content = the_byte[6].ToString();
                 switch8.Content = the_byte[7].ToString();
-                for(int i = 0; i < 8; i++)
+                string temp_text = "";
+                Random ran = new Random(new System.DateTime().Millisecond);
+                for (int i = 0; i < 8; i++)
                 {
-                    request_byte[i] = new Random(new System.DateTime().Millisecond).Next(2);
+                    request_byte[i] = ran.Next(0,2);
+                    temp_text += request_byte[i];
                 }
+                request_label.Content = temp_text;
+
             }
+
             going = false;
         }
 
