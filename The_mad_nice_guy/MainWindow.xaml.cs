@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Image = System.Windows.Controls.Image;
+using System.IO;
 
 namespace The_mad_nice_guy
 {
@@ -28,6 +29,7 @@ namespace The_mad_nice_guy
         public static bool entered = false;
         List<int> the_byte = new List<int> { 0, 0, 0, 0, 0, 0, 0, 0 };
         List<int> request_byte = new List<int> { 0, 0, 0, 0, 0, 0, 0, 0 };
+        int reveal_counter = 0;
         public MainWindow()
         {
             try
@@ -100,12 +102,15 @@ namespace The_mad_nice_guy
             game_scenario_list.Add(new Game_scenario());
             //Blind person left his wallet on the other side of the road
             game_scenario_list[0].NPC_list = new List<NPC> { new NPC(new XY(500, 150), "blind_idle.png", "", "") };
-            game_scenario_list[0].boarder_bottom = 200;
-            game_scenario_list[0].boarder_top = 100;
+            game_scenario_list[0].boarder_bottom = 450;
+            game_scenario_list[0].boarder_top = 110;
             game_scenario_list[0].boarder_left = 0;
             game_scenario_list[0].boarder_right = 1000;
             game_scenario_list[0].start_x = 300;
             game_scenario_list[0].start_y = 150;
+            game_scenario_list[0].move_y = 300;
+            game_scenario_list[0].actual_action_images = new List<String> { "scenario0-0.png", "scenario0-1.png", "scenario0-2.png", "scenario0-3.png", "scenario0-4.png", "scenario0-5.png" };
+
             game_scenario_list[0].start_text = new List<String> { "You are Sammy, and you knew you must help people around you",
                 "Because you are a nice guy that want to help others and see the smile of others",
                 "There seems to be a blind person in distress, let's help him!!"};
@@ -174,6 +179,7 @@ namespace The_mad_nice_guy
         List<Image> NPC_images_list = new List<Image>();
         public async void build_scenario()
         {
+            going = true;
             main_game_switches_panel.Visibility = Visibility.Collapsed;
             NPC_images_list.Clear();
             progress_in_process = 0;
@@ -202,6 +208,7 @@ namespace The_mad_nice_guy
                 await Task.Delay(2000);
             }
             main_game_text_output.Visibility = Visibility.Collapsed;
+            going = false;
         }
         enum direction
         {
@@ -211,7 +218,9 @@ namespace The_mad_nice_guy
             down,
         }
 
-        async void go_to_direction(direction dir) {
+        async 
+        Task
+go_to_direction(direction dir) {
             going = true;
             Bitmap Sammy_good_standing_bit = new Bitmap("resources/" + Sammy_good_standing);
             Bitmap Sammy_good_walking_a_bit = new Bitmap("resources/" + Sammy_good_walking_a);
@@ -312,6 +321,7 @@ namespace The_mad_nice_guy
             double y2 = game_scenario_list[process].NPC_list[game_scenario_list[process].target_NPC].start_xy.y;
             if (Math.Sqrt(Math.Pow(x1 - x2, 2) + Math.Pow(y1 - y2, 2)) <= 10 && progress_in_process == 0)//distance to target NPC
             {
+                going = false;
                 progress_in_process += 1;
                 //before_start_action_text
                 main_game_text_output.Visibility = Visibility.Visible;
@@ -331,13 +341,14 @@ namespace The_mad_nice_guy
                 switch7.Content = the_byte[6].ToString();
                 switch8.Content = the_byte[7].ToString();
                 string temp_text = "";
-                Random ran = new Random(new System.DateTime().Millisecond);
+                Random ran = new Random(System.DateTime.Now.Millisecond);
                 for (int i = 0; i < 8; i++)
                 {
                     request_byte[i] = ran.Next(0,2);
                     temp_text += request_byte[i];
                 }
                 request_label.Content = temp_text;
+
 
             }
 
@@ -355,7 +366,35 @@ namespace The_mad_nice_guy
             }
             main_game_text_output.Visibility = Visibility.Collapsed;
             //move x
+            if(game_scenario_list[process].move_x > 0) {
+                for (int i = 0; i < game_scenario_list[process].move_x; i += 10)
+                {
+                    await go_to_direction(direction.right);
+                }
+            }else if (game_scenario_list[process].move_x < 0)
+            {
+                for (int i = 0; i > game_scenario_list[process].move_x; i -= 10)
+                {
+                    await go_to_direction(direction.left);
+                }
+            }
+
             //move y
+            if (game_scenario_list[process].move_y > 0)
+            {
+                for (int i = 0; i < game_scenario_list[process].move_y; i += 10)
+                {
+                    await go_to_direction(direction.down);
+                }
+            }
+            else if (game_scenario_list[process].move_y < 0)
+            {
+                for (int i = 0; i > game_scenario_list[process].move_y; i -= 10)
+                {
+                    await go_to_direction(direction.up);
+                }
+            }
+
             main_game_text_output.Visibility = Visibility.Visible;
             for (int i = 0; i < game_scenario_list[process].end_text.Count; i++)
             {
@@ -363,25 +402,30 @@ namespace The_mad_nice_guy
                 main_game_text_output.Content = game_scenario_list[process].end_text[i];
                 
             }
-            entered = false;
-            while (!entered) { 
-            }
+            //entered = false;
+            //while (!entered) { 
+           // }
             process++;
             build_scenario();
         }
         async void do_game_bad_action()
         {
             main_game_text_output.Visibility = Visibility.Collapsed;
-            for(int i = 0; i < game_scenario_list[process].actual_action_images.Count; i++)
+            Sammy_image.Visibility = Visibility.Collapsed;
+            NPC_images_list.Clear();
+            System.IO.Compression.ZipFile.ExtractToDirectory("resources/scenario"+process.ToString()+".data", "resources");
+            for (int i = 0; i < game_scenario_list[process].actual_action_images.Count; i++)
             { 
                 Bitmap temp_bitmap = new Bitmap("resources/"+ game_scenario_list[process].actual_action_images[i]);
                 main_game_image.Source = shorter.bm_source(temp_bitmap);
+                File.Delete("resources/" + game_scenario_list[process].actual_action_images[i]);
                 await Task.Delay(800);
             }
-            entered = false;
-            while (!entered)
-            {
-            }
+            //entered = false;
+            //while (!entered)
+            //{
+           // }
+            reveal_counter++;
             process++;
             build_scenario();
         }
