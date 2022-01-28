@@ -43,7 +43,7 @@ namespace The_mad_nice_guy
                 init_scenario_list();
             }
 
-           catch (Exception e)
+            catch (Exception e)
             {
 
             }
@@ -131,7 +131,7 @@ namespace The_mad_nice_guy
             "[The old woman] Oh, well, actually I am just about to deliver the basket of meal to my son across the river, maybe you can help me?",
             "[A demonic voice] Hey, do you want to see the truth? Enter the opposite of what you supposed to do to reveal the truth!"};
 
-            game_scenario_list[1].after_start_action_text = new List<String> { "[Sammy] Of course, I can do that! Let's me help you!"};
+            game_scenario_list[1].after_start_action_text = new List<String> { "[Sammy] Of course, I can do that! Let's me help you!" };
 
             game_scenario_list[1].end_text = new List<String> { "Great job! You had bring the nice meal to her son!",
                 "You may now pres Enter to process."};
@@ -162,7 +162,7 @@ namespace The_mad_nice_guy
         }
         public void build_env()
         {
-            Bitmap Sammy_good_standing_bit = new Bitmap("resources/"+Sammy_good_standing);
+            Bitmap Sammy_good_standing_bit = new Bitmap("resources/" + Sammy_good_standing);
             Bitmap Sammy_good_walking_a_bit = new Bitmap("resources/" + Sammy_good_walking_a);
             Bitmap Sammy_good_walking_b_bit = new Bitmap("resources/" + Sammy_good_walking_b);
             Sammy_image = new Image();
@@ -184,11 +184,11 @@ namespace The_mad_nice_guy
             NPC_images_list.Clear();
             progress_in_process = 0;
             Sammy_image.Margin = new Thickness(game_scenario_list[process].start_x, game_scenario_list[process].start_y, 0, 0);
-            Bitmap BG_bit = new Bitmap("resources/scenario" + process.ToString() +".png");
+            Bitmap BG_bit = new Bitmap("resources/scenario" + process.ToString() + ".png");
             main_game_image.Source = shorter.bm_source(BG_bit);
-            for(int i = 0; i < game_scenario_list[process].NPC_list.Count; i++)
+            for (int i = 0; i < game_scenario_list[process].NPC_list.Count; i++)
             {
-                Bitmap temp_bm = new Bitmap("resources/"+ game_scenario_list[process].NPC_list[i].left_standing);
+                Bitmap temp_bm = new Bitmap("resources/" + game_scenario_list[process].NPC_list[i].left_standing);
                 Image temp_image = new Image();
                 temp_image.Width = 45;
                 temp_image.Height = 45;
@@ -218,9 +218,10 @@ namespace The_mad_nice_guy
             down,
         }
 
-        async 
+        async
         Task
-go_to_direction(direction dir) {
+go_to_direction(direction dir)
+        {
             going = true;
             Bitmap Sammy_good_standing_bit = new Bitmap("resources/" + Sammy_good_standing);
             Bitmap Sammy_good_walking_a_bit = new Bitmap("resources/" + Sammy_good_walking_a);
@@ -228,7 +229,7 @@ go_to_direction(direction dir) {
 
             if (dir == direction.right)
             {
-                if(Sammy_image.Margin.Left < game_scenario_list[process].boarder_right)
+                if (Sammy_image.Margin.Left < game_scenario_list[process].boarder_right)
                 {
                     Sammy_image.Margin = new Thickness(Sammy_image.Margin.Left + 5, Sammy_image.Margin.Top, 0, 0);
                     Sammy_good_walking_a_bit.RotateFlip(RotateFlipType.RotateNoneFlipX);
@@ -249,7 +250,7 @@ go_to_direction(direction dir) {
                 Sammy_image.UpdateLayout();
                 main_game_canvas.UpdateLayout();
             }
-            else if(dir == direction.left)
+            else if (dir == direction.left)
             {
                 if (Sammy_image.Margin.Left > game_scenario_list[process].boarder_left)
                 {
@@ -270,7 +271,8 @@ go_to_direction(direction dir) {
                 Sammy_image.Source = shorter.bm_source(Sammy_good_standing_bit);
                 Sammy_image.UpdateLayout();
                 main_game_canvas.UpdateLayout();
-            }else if(dir == direction.up)
+            }
+            else if (dir == direction.up)
             {
                 if (Sammy_image.Margin.Top > game_scenario_list[process].boarder_top)
                 {
@@ -344,7 +346,7 @@ go_to_direction(direction dir) {
                 Random ran = new Random(System.DateTime.Now.Millisecond);
                 for (int i = 0; i < 8; i++)
                 {
-                    request_byte[i] = ran.Next(0,2);
+                    request_byte[i] = ran.Next(0, 2);
                     temp_text += request_byte[i];
                 }
                 request_label.Content = temp_text;
@@ -366,12 +368,14 @@ go_to_direction(direction dir) {
             }
             main_game_text_output.Visibility = Visibility.Collapsed;
             //move x
-            if(game_scenario_list[process].move_x > 0) {
+            if (game_scenario_list[process].move_x > 0)
+            {
                 for (int i = 0; i < game_scenario_list[process].move_x; i += 10)
                 {
                     await go_to_direction(direction.right);
                 }
-            }else if (game_scenario_list[process].move_x < 0)
+            }
+            else if (game_scenario_list[process].move_x < 0)
             {
                 for (int i = 0; i > game_scenario_list[process].move_x; i -= 10)
                 {
@@ -398,13 +402,13 @@ go_to_direction(direction dir) {
             main_game_text_output.Visibility = Visibility.Visible;
             for (int i = 0; i < game_scenario_list[process].end_text.Count; i++)
             {
-                await Task.Delay(2000);
+
                 main_game_text_output.Content = game_scenario_list[process].end_text[i];
-                
+                await Task.Delay(2000);
             }
             //entered = false;
             //while (!entered) { 
-           // }
+            // }
             process++;
             build_scenario();
         }
@@ -413,10 +417,10 @@ go_to_direction(direction dir) {
             main_game_text_output.Visibility = Visibility.Collapsed;
             Sammy_image.Visibility = Visibility.Collapsed;
             NPC_images_list.Clear();
-            System.IO.Compression.ZipFile.ExtractToDirectory("resources/scenario"+process.ToString()+".data", "resources");
+            System.IO.Compression.ZipFile.ExtractToDirectory("resources/scenario" + process.ToString() + ".data", "resources");
             for (int i = 0; i < game_scenario_list[process].actual_action_images.Count; i++)
-            { 
-                Bitmap temp_bitmap = new Bitmap("resources/"+ game_scenario_list[process].actual_action_images[i]);
+            {
+                Bitmap temp_bitmap = new Bitmap("resources/" + game_scenario_list[process].actual_action_images[i]);
                 main_game_image.Source = shorter.bm_source(temp_bitmap);
                 File.Delete("resources/" + game_scenario_list[process].actual_action_images[i]);
                 await Task.Delay(800);
@@ -424,7 +428,7 @@ go_to_direction(direction dir) {
             //entered = false;
             //while (!entered)
             //{
-           // }
+            // }
             reveal_counter++;
             process++;
             build_scenario();
@@ -514,17 +518,18 @@ go_to_direction(direction dir) {
         private void execute_button_Click(object sender, RoutedEventArgs e)
         {
             int true_counter = 0;
-            for(int i = 0; i < 8; i++)
+            for (int i = 0; i < 8; i++)
             {
-                if(the_byte[i] == request_byte[i])
+                if (the_byte[i] == request_byte[i])
                 {
                     true_counter++;
                 }
             }
-            if(true_counter== 8)
+            if (true_counter == 8)
             {
                 do_game_good_action();
-            }else if(true_counter == 0)
+            }
+            else if (true_counter == 0)
             {
                 do_game_bad_action();
             }
