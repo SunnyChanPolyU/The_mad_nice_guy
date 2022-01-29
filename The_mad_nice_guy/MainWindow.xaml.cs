@@ -38,7 +38,7 @@ namespace The_mad_nice_guy
                 main_game_canvas.Visibility = Visibility.Collapsed;
                 main_menu.Visibility = Visibility.Visible;
                 Lang_handler.default_texts();
-                about_text.Text = "Creator list:\n  Sunny Chan (Programmer)\n   SOSYBOI (Tester)\n\n\n\n\n\n\nThis is a very short game about you being a mad nice guy that like to help others, an average gameplay should take only around 5 minutes to finish";
+                about_text.Text = "Creator list:\n  Chan Yat Chu Sunny (Programmer)\n   Jammie Chan (Artist)\n  Kyle Ng (Artist)\n   SOSYBOI (Tester)\n   Lam (Tester)\n\n    Contact email: chanyatchunsunny@gmail.com\n\n\n\n\n\n\nThis is a very short game about you being a mad nice guy that like to help others, an average gameplay should take only around 5 minutes to finish";
                 main_menu_start_game_button.Content = Lang_handler.texts_list.Find(x => x.text_name == "main_menu_start_text").the_text;
                 main_menu_quit_game_button.Content = Lang_handler.texts_list.Find(x => x.text_name == "main_menu_quit_text").the_text;
                 main_menu_about_button.Content = Lang_handler.texts_list.Find(x => x.text_name == "main_menu_about_text").the_text;
@@ -161,6 +161,7 @@ namespace The_mad_nice_guy
             game_scenario_list[2].start_x = 900;
             game_scenario_list[2].start_y = 260;
             game_scenario_list[2].move_x = -800;
+            game_scenario_list[1].actual_action_images = new List<String> { "scenario2-0.png", "scenario2-1.png", "scenario2-2.png", "scenario2-3.png", "scenario2-4.png", "scenario2-5.png", "scenario2-6.png", "scenario2-7.png", "scenario2-8.png" };
             game_scenario_list[2].start_text = new List<String> { "Well, even the flowers may need someone to help them!",
                 "Collect the water and share with them!",
                 "Anyway, do not listen to the other voice, this is definitely the reality!"};

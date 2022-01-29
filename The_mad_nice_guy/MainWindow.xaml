@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:The_mad_nice_guy"
         mc:Ignorable="d"
-        Title="REMEMBER TO CHANGE THIS LATER" Height="639" Width="1024" ResizeMode="NoResize" KeyDown="main_window_KeyDown">
+        Title="The mad nice guy" Height="639" Width="1024" ResizeMode="NoResize" KeyDown="main_window_KeyDown">
     <Grid>
         <Canvas x:Name="main_menu" HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="1018" Visibility="Collapsed">
             <Button x:Name="main_menu_start_game_button" Content="Text for start game button here" Canvas.Left="409" Canvas.Top="188" Width="200" Height="28" Click="main_menu_start_game_button_Click"/>
