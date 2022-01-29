@@ -7,11 +7,12 @@
         mc:Ignorable="d"
         Title="REMEMBER TO CHANGE THIS LATER" Height="639" Width="1024" ResizeMode="NoResize" KeyDown="main_window_KeyDown">
     <Grid>
-        <Canvas x:Name="main_menu" HorizontalAlignment="Left" Height="547" VerticalAlignment="Top" Width="1018" Visibility="Collapsed">
+        <Canvas x:Name="main_menu" HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="1018" Visibility="Collapsed">
             <Button x:Name="main_menu_start_game_button" Content="Text for start game button here" Canvas.Left="409" Canvas.Top="188" Width="200" Height="28" Click="main_menu_start_game_button_Click"/>
             <Button x:Name="main_menu_quit_game_button" Content="Text for quit game button here" Canvas.Left="409" Canvas.Top="342" Width="200" Height="28" Click="main_menu_quit_game_button_Click"/>
+            <Button x:Name="main_menu_about_button" Content="Text for about game button here" Canvas.Left="409" Canvas.Top="272" Width="200" Height="28" Click="main_menu_about_button_Click"/>
         </Canvas>
-        <Canvas x:Name="main_game_canvas" HorizontalAlignment="Left" Height="610" VerticalAlignment="Top" Width="1018">
+        <Canvas x:Name="main_game_canvas" HorizontalAlignment="Left" Height="610" VerticalAlignment="Top" Width="1018" Visibility="Collapsed">
             <Image x:Name="main_game_image" Height="610" Width="1018"/>
             <Label x:Name="main_game_text_output" Content="" Canvas.Left="225" Canvas.Top="550" Height="50" Width="601" FontFamily="Times New Roman" FontSize="16" Background="#FF6E6E6E" Foreground="#FFFFFCFC" MaxWidth="601"/>
             <Canvas x:Name="main_game_switches_panel" Height="60" Canvas.Left="292" Width="716" Canvas.Top="10">
@@ -26,6 +27,10 @@
                 <Label x:Name="request_label" Content="Label" Canvas.Left="10" Canvas.Top="34" Width="332"/>
                 <Button x:Name="execute_button" Content="Execute" Canvas.Left="645" Canvas.Top="10" Width="74" RenderTransformOrigin="-0.311,2.395" Click="execute_button_Click"/>
             </Canvas>
+        </Canvas>
+        <Canvas x:Name="about_page" HorizontalAlignment="Left" Height="610" VerticalAlignment="Top" Width="1018" Visibility="Collapsed">
+            <Button x:Name="back_to_main_menu_button" Content="Back to main menu button here" Canvas.Left="10" Canvas.Top="535" Width="234" Height="65" Click="back_to_main_menu_button_Click"/>
+            <TextBlock x:Name="about_text" Canvas.Left="316" TextWrapping="Wrap" Text="about us" Canvas.Top="96" Height="332" Width="464"/>
         </Canvas>
 
     </Grid>

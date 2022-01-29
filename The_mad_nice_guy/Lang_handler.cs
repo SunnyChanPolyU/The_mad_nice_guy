@@ -12,6 +12,8 @@ namespace The_mad_nice_guy
         public static void default_texts(){
             texts_list.Add(new text_pair("main_menu_start_text", "Start game"));
             texts_list.Add(new text_pair("main_menu_quit_text", "Quit game"));
+            texts_list.Add(new text_pair("main_menu_about_text", "About this game"));
+            texts_list.Add(new text_pair("back_to_main_menu_text", "Main menu"));
         }
     }
     public class text_pair

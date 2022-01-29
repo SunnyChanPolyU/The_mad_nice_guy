@@ -32,21 +32,24 @@ namespace The_mad_nice_guy
         int reveal_counter = 0;
         public MainWindow()
         {
-            try
-            {
+            //try
+            //{
                 InitializeComponent();
                 main_game_canvas.Visibility = Visibility.Collapsed;
                 main_menu.Visibility = Visibility.Visible;
                 Lang_handler.default_texts();
+                about_text.Text = "Creator list:\n  Sunny Chan (Programmer)\n   SOSYBOI (Tester)\n\n\n\n\n\n\nThis is a very short game about you being a mad nice guy that like to help others, an average gameplay should take only around 5 minutes to finish";
                 main_menu_start_game_button.Content = Lang_handler.texts_list.Find(x => x.text_name == "main_menu_start_text").the_text;
                 main_menu_quit_game_button.Content = Lang_handler.texts_list.Find(x => x.text_name == "main_menu_quit_text").the_text;
-                init_scenario_list();
-            }
+                main_menu_about_button.Content = Lang_handler.texts_list.Find(x => x.text_name == "main_menu_about_text").the_text;
+                back_to_main_menu_button.Content = Lang_handler.texts_list.Find(x => x.text_name == "back_to_main_menu_text").the_text;
+            init_scenario_list();
+           //}
 
-            catch (Exception e)
-            {
+           // catch (Exception e)
+           // {
 
-            }
+            //}
         }
 
         private void main_menu_quit_game_button_Click(object sender, RoutedEventArgs e)
@@ -102,13 +105,13 @@ namespace The_mad_nice_guy
             game_scenario_list.Add(new Game_scenario());
             //Blind person left his wallet on the other side of the road
             game_scenario_list[0].NPC_list = new List<NPC> { new NPC(new XY(500, 150), "blind_idle.png", "", "") };
-            game_scenario_list[0].boarder_bottom = 450;
+            game_scenario_list[0].boarder_bottom = 550;
             game_scenario_list[0].boarder_top = 110;
             game_scenario_list[0].boarder_left = 0;
             game_scenario_list[0].boarder_right = 1000;
             game_scenario_list[0].start_x = 300;
             game_scenario_list[0].start_y = 150;
-            game_scenario_list[0].move_y = 300;
+            game_scenario_list[0].move_y = 350;
             game_scenario_list[0].actual_action_images = new List<String> { "scenario0-0.png", "scenario0-1.png", "scenario0-2.png", "scenario0-3.png", "scenario0-4.png", "scenario0-5.png" };
 
             game_scenario_list[0].start_text = new List<String> { "You are Sammy, and you knew you must help people around you",
@@ -125,25 +128,46 @@ namespace The_mad_nice_guy
             "Press Enter to continue helping others."};
 
             //An old lady needs to deliver meal to her son
+            game_scenario_list.Add(new Game_scenario());
+            game_scenario_list[1].NPC_list = new List<NPC> { new NPC(new XY(800, 320), "old_idle.png", "", "") };
+            game_scenario_list[1].boarder_bottom = 320;
+            game_scenario_list[1].boarder_top = 250;
+            game_scenario_list[1].boarder_left = 0;
+            game_scenario_list[1].boarder_right = 1000;
+            game_scenario_list[1].start_x = 900;
+            game_scenario_list[1].start_y = 320;
+            game_scenario_list[1].move_x = -800;
+            game_scenario_list[1].actual_action_images = new List<String> { "scenario1-0.png", "scenario1-1.png", "scenario1-2.png", "scenario1-3.png", "scenario1-4.png" };
             game_scenario_list[1].start_text = new List<String> { "Hmm, that old woman may need help, approach her to ask how you can help her!" };
 
             game_scenario_list[1].before_start_action_text = new List<String> {"[Sammy] Hello, is there anything I can help you?",
-            "[The old woman] Oh, well, actually I am just about to deliver the basket of meal to my son across the river, maybe you can help me?",
-            "[A demonic voice] Hey, do you want to see the truth? Enter the opposite of what you supposed to do to reveal the truth!"};
+            "[The old woman] Oh, well, actually I am just about to deliver the basket of meal",
+             "to my son across the river, maybe you can help me?",
+            "[A demonic voice] Hey, do you want to see the truth?\n Enter the opposite of what you supposed to do to reveal the truth!"};
 
             game_scenario_list[1].after_start_action_text = new List<String> { "[Sammy] Of course, I can do that! Let's me help you!" };
 
             game_scenario_list[1].end_text = new List<String> { "Great job! You had bring the nice meal to her son!",
-                "You may now pres Enter to process."};
+                "You may now process."};
 
             //Water the garden
+
+            game_scenario_list.Add(new Game_scenario());
+            game_scenario_list[2].NPC_list = new List<NPC> { new NPC(new XY(800, 260), "watering.png", "", "") };
+            game_scenario_list[2].boarder_bottom = 280;
+            game_scenario_list[2].boarder_top = 180;
+            game_scenario_list[2].boarder_left = 0;
+            game_scenario_list[2].boarder_right = 1000;
+            game_scenario_list[2].start_x = 900;
+            game_scenario_list[2].start_y = 260;
+            game_scenario_list[2].move_x = -800;
             game_scenario_list[2].start_text = new List<String> { "Well, even the flowers may need someone to help them!",
-                "Grab the watering can to give them some water!",
+                "Collect the water and share with them!",
                 "Anyway, do not listen to the other voice, this is definitely the reality!"};
 
-            game_scenario_list[2].start_text = new List<String> { "Come on! You need stop and face the truth! You need to get some help!" };
+            game_scenario_list[2].before_start_action_text = new List<String> { "Come on! You need stop and face the truth! You need to get some help!" };
             game_scenario_list[2].after_start_action_text = new List<String> { "" };
-            game_scenario_list[2].end_text = new List<String> { "Great! You even saved the flowers!", "Now press Enter to face consequence!" };
+            game_scenario_list[2].end_text = new List<String> { "Great! You even saved the flowers!", "Now face the consequence!" };
 
         }
 
@@ -179,36 +203,65 @@ namespace The_mad_nice_guy
         List<Image> NPC_images_list = new List<Image>();
         public async void build_scenario()
         {
-            going = true;
-            main_game_switches_panel.Visibility = Visibility.Collapsed;
-            NPC_images_list.Clear();
-            progress_in_process = 0;
-            Sammy_image.Margin = new Thickness(game_scenario_list[process].start_x, game_scenario_list[process].start_y, 0, 0);
-            Bitmap BG_bit = new Bitmap("resources/scenario" + process.ToString() + ".png");
-            main_game_image.Source = shorter.bm_source(BG_bit);
-            for (int i = 0; i < game_scenario_list[process].NPC_list.Count; i++)
-            {
-                Bitmap temp_bm = new Bitmap("resources/" + game_scenario_list[process].NPC_list[i].left_standing);
-                Image temp_image = new Image();
-                temp_image.Width = 45;
-                temp_image.Height = 45;
-                temp_image.HorizontalAlignment = HorizontalAlignment.Left;
-                temp_image.VerticalAlignment = VerticalAlignment.Top;
-                temp_image.Margin = new Thickness(game_scenario_list[process].NPC_list[i].start_xy.x, game_scenario_list[process].NPC_list[i].start_xy.y, 0, 0);
-                temp_image.Name = "Sammy_image_control";
-                temp_image.Source = shorter.bm_source(temp_bm);
-                NPC_images_list.Add(temp_image);
-                main_game_canvas.Children.Add(temp_image);
 
-            }
-            main_game_text_output.Visibility = Visibility.Visible;
-            for (int i = 0; i < game_scenario_list[process].start_text.Count; i++)
+            going = true;
+
+            main_game_switches_panel.Visibility = Visibility.Collapsed;
+            for (int i = 0; i < NPC_images_list.Count; i++)
             {
-                main_game_text_output.Content = game_scenario_list[process].start_text[i];
-                await Task.Delay(2000);
+                NPC_images_list[i].Visibility = Visibility.Collapsed;
             }
-            main_game_text_output.Visibility = Visibility.Collapsed;
-            going = false;
+            NPC_images_list.Clear();
+            if (process <= 2)
+            {
+                progress_in_process = 0;
+                Sammy_image.Margin = new Thickness(game_scenario_list[process].start_x, game_scenario_list[process].start_y, 0, 0);
+                Bitmap BG_bit = new Bitmap("resources/scenario" + process.ToString() + ".png");
+                main_game_image.Source = shorter.bm_source(BG_bit);
+                for (int i = 0; i < game_scenario_list[process].NPC_list.Count; i++)
+                {
+                    Bitmap temp_bm = new Bitmap("resources/" + game_scenario_list[process].NPC_list[i].left_standing);
+                    Image temp_image = new Image();
+                    temp_image.Width = 45;
+                    temp_image.Height = 45;
+                    temp_image.HorizontalAlignment = HorizontalAlignment.Left;
+                    temp_image.VerticalAlignment = VerticalAlignment.Top;
+                    temp_image.Margin = new Thickness(game_scenario_list[process].NPC_list[i].start_xy.x, game_scenario_list[process].NPC_list[i].start_xy.y, 0, 0);
+                    temp_image.Name = "Sammy_image_control";
+                    temp_image.Source = shorter.bm_source(temp_bm);
+                    NPC_images_list.Add(temp_image);
+                    main_game_canvas.Children.Add(temp_image);
+
+                }
+                main_game_text_output.Visibility = Visibility.Visible;
+                for (int i = 0; i < game_scenario_list[process].start_text.Count; i++)
+                {
+                    main_game_text_output.Content = game_scenario_list[process].start_text[i];
+                    await Task.Delay(3000);
+                }
+                main_game_text_output.Visibility = Visibility.Collapsed;
+                going = false;
+            }
+            else
+            {
+                main_game_text_output.Visibility = Visibility.Collapsed;
+
+                if(reveal_counter < 2)
+                {
+                    if (!File.Exists("resources/bad_end.png"))
+                        System.IO.Compression.ZipFile.ExtractToDirectory("resources/bad_end.data", "resources");
+                    Bitmap BG_bit = new Bitmap("resources/bad_end.png");
+                    main_game_image.Source = shorter.bm_source(BG_bit);
+
+                }
+                else
+                {
+                    if (!File.Exists("resources/good_end.png"))
+                        System.IO.Compression.ZipFile.ExtractToDirectory("resources/good_end.data", "resources");
+                    Bitmap BG_bit = new Bitmap("resources/good_end.png");
+                    main_game_image.Source = shorter.bm_source(BG_bit);
+                }
+            }
         }
         enum direction
         {
@@ -330,7 +383,7 @@ go_to_direction(direction dir)
                 for (int i = 0; i < game_scenario_list[process].before_start_action_text.Count; i++)
                 {
                     main_game_text_output.Content = game_scenario_list[process].before_start_action_text[i];
-                    await Task.Delay(2000);
+                    await Task.Delay(3000);
                 }
                 //puzzle
                 main_game_switches_panel.Visibility = Visibility.Visible;
@@ -364,7 +417,7 @@ go_to_direction(direction dir)
             for (int i = 0; i < game_scenario_list[process].after_start_action_text.Count; i++)
             {
                 main_game_text_output.Content = game_scenario_list[process].after_start_action_text[i];
-                await Task.Delay(2000);
+                await Task.Delay(3000);
             }
             main_game_text_output.Visibility = Visibility.Collapsed;
             //move x
@@ -404,7 +457,7 @@ go_to_direction(direction dir)
             {
 
                 main_game_text_output.Content = game_scenario_list[process].end_text[i];
-                await Task.Delay(2000);
+                await Task.Delay(3000);
             }
             //entered = false;
             //while (!entered) { 
@@ -415,15 +468,23 @@ go_to_direction(direction dir)
         async void do_game_bad_action()
         {
             main_game_text_output.Visibility = Visibility.Collapsed;
+            main_game_switches_panel.Visibility = Visibility.Collapsed;
             Sammy_image.Visibility = Visibility.Collapsed;
+            for (int i = 0;i < NPC_images_list.Count; i++)
+            {
+                NPC_images_list[i].Visibility = Visibility.Collapsed;
+            }
             NPC_images_list.Clear();
-            System.IO.Compression.ZipFile.ExtractToDirectory("resources/scenario" + process.ToString() + ".data", "resources");
+            if(!File.Exists("resources/" + game_scenario_list[process].actual_action_images[0]))
+                System.IO.Compression.ZipFile.ExtractToDirectory("resources/scenario" + process.ToString() + ".data", "resources");
+
             for (int i = 0; i < game_scenario_list[process].actual_action_images.Count; i++)
             {
                 Bitmap temp_bitmap = new Bitmap("resources/" + game_scenario_list[process].actual_action_images[i]);
                 main_game_image.Source = shorter.bm_source(temp_bitmap);
-                File.Delete("resources/" + game_scenario_list[process].actual_action_images[i]);
+                
                 await Task.Delay(800);
+                
             }
             //entered = false;
             //while (!entered)
@@ -533,6 +594,18 @@ go_to_direction(direction dir)
             {
                 do_game_bad_action();
             }
+        }
+
+        private void main_menu_about_button_Click(object sender, RoutedEventArgs e)
+        {
+            main_menu.Visibility = Visibility.Collapsed;
+            about_page.Visibility = Visibility.Visible;
+        }
+
+        private void back_to_main_menu_button_Click(object sender, RoutedEventArgs e)
+        {
+            about_page.Visibility = Visibility.Collapsed;
+            main_menu.Visibility = Visibility.Visible;
         }
     }
     public class shorter
