@@ -166,7 +166,7 @@ namespace The_mad_nice_guy
                 "Collect the water and share with them!",
                 "Anyway, do not listen to the other voice, this is definitely the reality!"};
 
-            game_scenario_list[2].before_start_action_text = new List<String> { "Come on! You need stop and face the truth! You need to get some help!" };
+            game_scenario_list[2].before_start_action_text = new List<String> { "[The demonic voice] Come on! You need to stop and face the truth! You need to get some help!" };
             game_scenario_list[2].after_start_action_text = new List<String> { "" };
             game_scenario_list[2].end_text = new List<String> { "Great! You even saved the flowers!", "Now face the consequence!" };
 
@@ -216,6 +216,7 @@ namespace The_mad_nice_guy
             if (process <= 2)
             {
                 progress_in_process = 0;
+                Sammy_image.Visibility = Visibility.Visible;
                 Sammy_image.Margin = new Thickness(game_scenario_list[process].start_x, game_scenario_list[process].start_y, 0, 0);
                 Bitmap BG_bit = new Bitmap("resources/scenario" + process.ToString() + ".png");
                 main_game_image.Source = shorter.bm_source(BG_bit);
@@ -246,6 +247,8 @@ namespace The_mad_nice_guy
             else
             {
                 main_game_text_output.Visibility = Visibility.Collapsed;
+                Sammy_image.Visibility = Visibility.Collapsed;
+                main_game_switches_panel.Visibility = Visibility.Collapsed;
 
                 if(reveal_counter < 2)
                 {

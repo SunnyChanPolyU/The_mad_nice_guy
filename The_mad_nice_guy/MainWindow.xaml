@@ -12,14 +12,14 @@
             <Button x:Name="main_menu_quit_game_button" Content="Text for quit game button here" Canvas.Left="409" Canvas.Top="342" Width="200" Height="28" Click="main_menu_quit_game_button_Click"/>
             <Button x:Name="main_menu_about_button" Content="Text for about game button here" Canvas.Left="409" Canvas.Top="272" Width="200" Height="28" Click="main_menu_about_button_Click"/>
         </Canvas>
-        <Canvas x:Name="main_game_canvas" HorizontalAlignment="Left" Height="610" VerticalAlignment="Top" Width="1018" Visibility="Collapsed">
+        <Canvas x:Name="main_game_canvas" HorizontalAlignment="Left" Height="610" VerticalAlignment="Top" Width="1018">
             <Image x:Name="main_game_image" Height="610" Width="1018"/>
             <Label x:Name="main_game_text_output" Content="" Canvas.Left="225" Canvas.Top="550" Height="50" Width="601" FontFamily="Times New Roman" FontSize="16" Background="#FF6E6E6E" Foreground="#FFFFFCFC" MaxWidth="601"/>
             <Canvas x:Name="main_game_switches_panel" Height="60" Canvas.Left="292" Width="716" Canvas.Top="10">
-                <Button x:Name="switch1" Content="Button" Canvas.Left="10" Canvas.Top="10" Width="75" Click="switch1_Click"/>
-                <Button x:Name="switch2" Content="Button" Canvas.Left="90" Canvas.Top="10" Width="75" Click="switch2_Click"/>
-                <Button x:Name="switch3" Content="Button" Canvas.Left="170" Canvas.Top="10" Width="75" Click="switch3_Click"/>
-                <Button x:Name="switch4" Content="Button" Canvas.Left="250" Canvas.Top="10" Width="75" Click="switch4_Click"/>
+                <Button x:Name="switch1" Content="Button" Canvas.Top="10" Width="75" Click="switch1_Click"/>
+                <Button x:Name="switch2" Content="Button" Canvas.Left="80" Canvas.Top="10" Width="75" Click="switch2_Click"/>
+                <Button x:Name="switch3" Content="Button" Canvas.Left="160" Canvas.Top="10" Width="75" Click="switch3_Click"/>
+                <Button x:Name="switch4" Content="Button" Canvas.Left="240" Canvas.Top="10" Width="75" Click="switch4_Click"/>
                 <Button x:Name="switch5" Content="Button" Canvas.Left="325" Canvas.Top="10" Width="75" Click="switch5_Click"/>
                 <Button x:Name="switch6" Content="Button" Canvas.Left="405" Canvas.Top="10" Width="75" Click="switch6_Click"/>
                 <Button x:Name="switch7" Content="Button" Canvas.Left="485" Canvas.Top="10" Width="75" Click="switch7_Click"/>
