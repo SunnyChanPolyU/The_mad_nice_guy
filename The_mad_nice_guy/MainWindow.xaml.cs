@@ -125,7 +125,7 @@ namespace The_mad_nice_guy
             "[Sammy] Let's me go help you fetch it back!", "[The blind person] Thank you, kind stranger."};
 
             game_scenario_list[0].end_text = new List<String> { "This will only be one of many people you are going to help",
-            "Press Enter to continue helping others."};
+            "Now continue helping others."};
 
             //An old lady needs to deliver meal to her son
             game_scenario_list.Add(new Game_scenario());
@@ -153,7 +153,7 @@ namespace The_mad_nice_guy
             //Water the garden
 
             game_scenario_list.Add(new Game_scenario());
-            game_scenario_list[2].NPC_list = new List<NPC> { new NPC(new XY(800, 260), "watering.png", "", "") };
+            game_scenario_list[2].NPC_list = new List<NPC> { new NPC(new XY(800, 260), "water.png", "", "") };
             game_scenario_list[2].boarder_bottom = 280;
             game_scenario_list[2].boarder_top = 180;
             game_scenario_list[2].boarder_left = 0;
