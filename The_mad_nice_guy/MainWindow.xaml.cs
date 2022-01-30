@@ -161,12 +161,12 @@ namespace The_mad_nice_guy
             game_scenario_list[2].start_x = 900;
             game_scenario_list[2].start_y = 260;
             game_scenario_list[2].move_x = -800;
-            game_scenario_list[1].actual_action_images = new List<String> { "scenario2-0.png", "scenario2-1.png", "scenario2-2.png", "scenario2-3.png", "scenario2-4.png", "scenario2-5.png", "scenario2-6.png", "scenario2-7.png", "scenario2-8.png" };
+            game_scenario_list[2].actual_action_images = new List<String> { "scenario2-0.png", "scenario2-1.png", "scenario2-2.png", "scenario2-3.png", "scenario2-4.png", "scenario2-5.png", "scenario2-6.png", "scenario2-7.png", "scenario2-8.png" };
             game_scenario_list[2].start_text = new List<String> { "Well, even the flowers may need someone to help them!",
                 "Collect the water and share with them!",
                 "Anyway, do not listen to the other voice, this is definitely the reality!"};
 
-            game_scenario_list[2].before_start_action_text = new List<String> { "[The demonic voice] Come on! You need to stop and face the truth! You need to get some help!" };
+            game_scenario_list[2].before_start_action_text = new List<String> { "[The demonic voice] Come on! You need to stop and face the truth!\nYou need to get some help!" };
             game_scenario_list[2].after_start_action_text = new List<String> { "" };
             game_scenario_list[2].end_text = new List<String> { "Great! You even saved the flowers!", "Now face the consequence!" };
 
@@ -252,17 +252,17 @@ namespace The_mad_nice_guy
 
                 if(reveal_counter < 2)
                 {
-                    if (!File.Exists("resources/bad_end.png"))
-                        System.IO.Compression.ZipFile.ExtractToDirectory("resources/bad_end.data", "resources");
-                    Bitmap BG_bit = new Bitmap("resources/bad_end.png");
+                    if (!File.Exists("resources/ending0.png"))
+                        System.IO.Compression.ZipFile.ExtractToDirectory("resources/ending0.data", "resources");
+                    Bitmap BG_bit = new Bitmap("resources/ending0.png");
                     main_game_image.Source = shorter.bm_source(BG_bit);
 
                 }
                 else
                 {
-                    if (!File.Exists("resources/good_end.png"))
-                        System.IO.Compression.ZipFile.ExtractToDirectory("resources/good_end.data", "resources");
-                    Bitmap BG_bit = new Bitmap("resources/good_end.png");
+                    if (!File.Exists("resources/ending1.png"))
+                        System.IO.Compression.ZipFile.ExtractToDirectory("resources/ending1.data", "resources");
+                    Bitmap BG_bit = new Bitmap("resources/ending1.png");
                     main_game_image.Source = shorter.bm_source(BG_bit);
                 }
             }

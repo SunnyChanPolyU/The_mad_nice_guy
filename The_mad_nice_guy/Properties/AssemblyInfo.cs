@@ -12,7 +12,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("The_mad_nice_guy")]
-[assembly: AssemblyCopyright("Copyright © Sunny Chan, Jammie Chan, Kyle Ng, SOSYBOI, Lam,  29/1/2022")]
+[assembly: AssemblyCopyright("Copyright © Sunny Chan, Jammie Chan, Kyle Ng, SOSYBOI, Lam,  30/1/2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
